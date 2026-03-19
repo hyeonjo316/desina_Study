@@ -1,0 +1,17 @@
+using UnityEngine;
+
+public class CameraFollw : MonoBehaviour
+{
+    public Transform target;
+    public Vector3 offset = new Vector3(0f, 12f, -8f);
+    
+
+    // Update is called once per frame
+    void LateUpdate()
+    {
+        if (target == null) return;
+
+        transform.position = target.position + offset;
+
+    }
+}
