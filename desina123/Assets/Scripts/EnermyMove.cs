@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class EnermyMove : MonoBehaviour
 {
     public float moveSpeed = 2f;
     private Transform target;

@@ -7,11 +7,11 @@ public class EnermySpawner : MonoBehaviour
     public float spawnRange = 13f;
 
     private float timer = 0f;
-    void Start()
+    void Update()
     {
         timer += Time.deltaTime;
 
-        if (timer < spawnInterval)
+        if (timer > spawnInterval)
         {
             spawnEnemy();
             timer = 0f;
@@ -20,13 +20,37 @@ public class EnermySpawner : MonoBehaviour
 
     void spawnEnemy()
     {
-        Vector3 spawnposition = GetRandomEdgePosition();
-        Instantiate(enemyprefab, spawnposition, Quaternion.identity);
+       Vector3 spawnposition = GetRandomEdgePosition();
+       Instantiate(enemyprefab, spawnposition, Quaternion.identity);
 
     }
-    
-    void Update()
+
+    Vector3 GetRandomEdgePosition()
     {
-        
+        int side = Random.Range(0, 4);
+
+        float x = 0f;
+        float z = 0f;
+
+        switch (side)
+        {
+            case 0:
+                x = Random.Range(-spawnRange, spawnRange);
+                z = spawnRange;
+                break;
+            case 1:
+                x = Random.Range(-spawnRange, spawnRange);
+                z = -spawnRange;
+                break;
+            case 2:
+                x = spawnRange;
+                z = Random.Range(-spawnRange, spawnRange);
+                break;
+            case 3:
+                x = -spawnRange;
+                z = Random.Range(-spawnRange, spawnRange);
+                break;
+        }
+        return new Vector3(x, 0.5f, z);
     }
 }
